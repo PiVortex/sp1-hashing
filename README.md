@@ -47,7 +47,7 @@ These tests were run on a machine and the prover network.
 
 | Environment       | Precompile         | Cycles | Gas   | E2E Time       | kHz  | Proof Size | Link                                                                 | Time                |
 |-------------------|--------------------|--------|-------|----------------|------|------------|----------------------------------------------------------------------|---------------------|
-| Local Machine       | Without precompile | 35022  | 61538 | 20.068248415s  | 1.75 | 3259092    |                                                                      | 2 minutes 34 seconds |
+| Local Machine       | Without precompile | 35022  | 61538 | 20.068248415s  | 1.75 | 3259092    |                                                                      |  |
 | Local Machine       | With precompile    | 18646  | 42184 | 24.120392861s  | 0.77 | 5894997    |                                                                      |                     |
 | On prover network | Without precompile |        |       |                |      |            | [Link](https://explorer.succinct.xyz/proof/01jaq4pnf4e65bpk73s02jg3tx) | 2 minutes 34 seconds |
 | On prover network | With precompile    |        |       |                |      |            | [Link](https://explorer.succinct.xyz/proof/01jaq51mpge4ta29gtc4d4c50z) | 2 minutes 56 seconds |
