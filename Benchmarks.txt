@@ -1,25 +1,52 @@
+For groth16
+
+
+sha256
+
 Using my PC
 
-For groth16
 without precompile
 cycles=22203, gas=56393, e2e=20.040230106s, khz=1.11, proofSize=2656912
 
 with precompile
 cycles=4255, gas=20783, e2e=25.455597017s, khz=0.17, proofSize=5518992
 
-
-
-
 On prover network
-
-For groth16
 
 Without precompile
 https://explorer.succinct.xyz/proof/01japypg1mf379xq16ex4nw54z
 2 minutes 32 seconds
-22203 cycles 
 
 With precompile
 https://explorer.succinct.xyz/proof/01japzx0nnerks2p7nsznr1j4n
 2 minutes 51 seconds
-4255 cycles
+
+
+
+
+keccak
+
+Using my PC
+
+without precompile
+cycles=35022, gas=61538, e2e=20.068248415s, khz=1.75, proofSize=3259092
+2 minutes 34 seconds
+
+with precompile
+cycles=18646, gas=42184, e2e=24.120392861s, khz=0.77, proofSize=5894997
+
+On prover network
+
+
+Without precompile
+https://explorer.succinct.xyz/proof/01jaq4pnf4e65bpk73s02jg3tx
+2 minutes 34 seconds
+
+With precompile
+https://explorer.succinct.xyz/proof/01jaq51mpge4ta29gtc4d4c50z
+2 minutes 56 seconds
+
+
+Ubuntu 22.04.4 LTS
+6 Cores - Intel Core i7-10750H CPU @ 2.60GHz
+Memory 8GB
