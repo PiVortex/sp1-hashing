@@ -41,7 +41,7 @@ fn main() {
     // if no data is provided
     let mut args = Args::parse();
     if args.data.is_empty() {
-        args.data = vec![1u8; 32];
+        args.data = vec![1u8; 10_240]; // 10KB
     }
 
     if args.execute == args.prove {
@@ -56,8 +56,6 @@ fn main() {
     let mut stdin = SP1Stdin::new();
     stdin.write(&args.data);
 
-    println!("data: {:?}", args.data);
-
     if args.execute {
         // Execute the program
         let (output, report) = client.execute(HASH_ELF, stdin).run().unwrap();
@@ -66,7 +64,6 @@ fn main() {
         // Read the output.
         let decoded = PublicValuesStruct::abi_decode(output.as_slice(), true).unwrap();
         let PublicValuesStruct { data, hash } = decoded;
-        println!("data: {}", data);
         println!("hash: {}", hash);
 
         let expected_hash = hash_lib::hash_keccak(&data);

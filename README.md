@@ -30,39 +30,34 @@ SP1_PROVER=network SP1_PRIVATE_KEY=... RUST_LOG=info cargo run --release -- --pr
 
 ## Benchmark results
 
-These tests were run on a machine and the prover network.
+These tests were run on a local machine and the prover network. In these benchmarks a groth 16 proof was generated for a sha256 and keccak hash of a 10KB input.
 
-### Groth16 Benchmarks
 
 #### SHA256
 
-| Environment       | Precompile         | Cycles | Gas   | E2E Time       | kHz  | Proof Size | Link                                                                 | Time                |
-|-------------------|--------------------|--------|-------|----------------|------|------------|----------------------------------------------------------------------|---------------------|
-| Local Machine       | Without precompile | 22203  | 56393 | 20.040230106s  | 1.11 | 2656912    |                                                                      |                     |
-| Local Machine       | With precompile    | 4255   | 20783 | 25.455597017s  | 0.17 | 5518992    |                                                                      |                     |
-| On prover network | Without precompile |        |       |                |      |            | [Link](https://explorer.succinct.xyz/proof/01japypg1mf379xq16ex4nw54z) | 2 minutes 32 seconds |
-| On prover network | With precompile    |        |       |                |      |            | [Link](https://explorer.succinct.xyz/proof/01japzx0nnerks2p7nsznr1j4n) | 2 minutes 51 seconds |
+| Environment       | Precompile         | Cycles   | Gas     | E2E Time       | kHz  | Proof Size | Link                                                                 | Time                |
+|-------------------|--------------------|----------|---------|----------------|------|------------|----------------------------------------------------------------------|---------------------|
+| Local Machine     | Without precompile | 1369575  | 1692317 | 139.106343834s | 9.85 | 10099927   |                                                                      |                     |
+| Local Machine     | With precompile    | 245166   | 365676  | 48.886080699s  | 5.02 | 5655056    |                                                                      |                     |
+| On prover network | Without precompile |          |         |                |      |            | [Link](https://explorer.succinct.xyz/proof/01javw27e4fjbrj7krqzyd5bnw) | 2 minutes 38 seconds |
+| On prover network | With precompile    |          |         |                |      |            | [Link](https://explorer.succinct.xyz/proof/01javvq0g3fjbvpvmqcbjezw4x) | 2 minutes 48 seconds |
 
 #### Keccak
 
-| Environment       | Precompile         | Cycles | Gas   | E2E Time       | kHz  | Proof Size | Link                                                                 | Time                |
-|-------------------|--------------------|--------|-------|----------------|------|------------|----------------------------------------------------------------------|---------------------|
-| Local Machine       | Without precompile | 35022  | 61538 | 20.068248415s  | 1.75 | 3259092    |                                                                      |  |
-| Local Machine       | With precompile    | 18646  | 42184 | 24.120392861s  | 0.77 | 5894997    |                                                                      |                     |
-| On prover network | Without precompile |        |       |                |      |            | [Link](https://explorer.succinct.xyz/proof/01jaq4pnf4e65bpk73s02jg3tx) | 2 minutes 34 seconds |
-| On prover network | With precompile    |        |       |                |      |            | [Link](https://explorer.succinct.xyz/proof/01jaq51mpge4ta29gtc4d4c50z) | 2 minutes 56 seconds |
+| Environment       | Precompile         | Cycles   | Gas     | E2E Time       | kHz  | Proof Size | Link                                                                 | Time                |
+|-------------------|--------------------|----------|---------|----------------|------|------------|----------------------------------------------------------------------|---------------------|
+| Local Machine     | Without precompile | 2070089  | 2435888 | 188.938836422s | 10.96| 12940745   |                                                                      |                     |
+| Local Machine     | With precompile    | 825513   | 1041865 | 95.18422441s   | 8.67 | 9991603    |                                                                      |                     |
+| On prover network | Without precompile |          |         |                |      |            | [Link](https://explorer.succinct.xyz/proof/01javwh79df3wbnkpt2vd393f9) | 2 minutes 40 seconds |
+| On prover network | With precompile    |          |         |                |      |            | [Link](https://explorer.succinct.xyz/proof/01javwys73fjbtj687dw4d28b4) | 2 minutes 43 seconds |
 
 ## Analysis 
 
-The number of cycles are are much lower for the precompiles. The e2e time is higher for the precompiles, this seems to be because the cycle rate is lower due to limitations of the machine. Assuming a fixed cycle rate of 1kHz and using the results from the local mahcine we would get the following results:
-
-| Hash Function | Precompile       | Effective Proof Time (seconds) |
-|---------------|------------------|----------------------|
-| SHA256        | Without precompile | 22.203 |
-| SHA256        | With precompile    | 4.225 |
-| Keccak        | Without precompile | 35.022 |
-| Keccak        | With precompile    | 18.646 |
-
+- **Cycles**: The number of cycles is significantly reduced when using precompiles for both SHA256 and Keccak.
+- **Gas**: Gas consumption is also lower with precompiles.
+- **e2e Time**: The end-to-end time is higher for precompiles, likely due to the lower cycle rate.
+- **kHz**: The cycle rate (kHz) is lower for precompiles, this could be due to limitations of the machine and a machine with greater resources could leads to a lesser e2e time.
+- **Proof Size**: The proof size is smaller with precompiles for SHA256 but slightly larger for Keccak.
 
 #### Local Machine System Information
 
